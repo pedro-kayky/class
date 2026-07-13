@@ -1,1 +1,2 @@
-https://pedro-kayky.github.io/class/laboratorio/laboratorio.html
+https://pedro-kayky.github.io/class/
+
