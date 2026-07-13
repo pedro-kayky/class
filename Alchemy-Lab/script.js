@@ -336,7 +336,7 @@ function iniciarVideo() {
     
         function iniciarAcademia() {
     // Redireciona o jogador da Fase 1 direto para a Fase 2
-      window.location.href = "/laboratorio/laboratorio.html";
+      window.location.href = "laboratorio/laboratorio.html";
 }
 
     
