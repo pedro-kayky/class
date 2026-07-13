@@ -40,7 +40,7 @@ window.onload = () => {
     const audioPool = [];
     let poolIndex = 0;
     const POOL_SIZE = 12; // Quantidade de canais para sobrepor os sons das letras perfeitamente
-    const caminhoSomTexto = "/Alchemy-Lab/audio/estudiocoati-maquina-de-escribir_tipeo-typewritter-machine-typing-218133.mp3";
+    const caminhoSomTexto = "Alchemy-Lab/audio/typing.mp3";
 
     // Pré-carrega todos os áudios na memória assim que a página abre
     for (let i = 0; i < POOL_SIZE; i++) {
@@ -91,17 +91,18 @@ window.onload = () => {
     // ===================================================
     // HISTÓRIA
     // ===================================================
-    async function historia() {
-        for (const fraseAtual of frases) {
-            await frase(fraseAtual);
-        }
-        mostrarEscolha();
+   async function historia() {
+    for (const fraseAtual of frases) {
+        await frase(fraseAtual);
     }
+    mostrarEscolha();
+}
 
-    function mostrarEscolha() {
-        choice.style.display = "flex";
-    }
-    // Função auxiliar para tocar o som de hover de forma limpa
+function mostrarEscolha() {
+    choice.style.display = "flex";
+}
+
+// Função auxiliar para tocar o som de hover de forma limpa
 function tocarSomHover() {
     if (hoverSound) {
         hoverSound.currentTime = 0; // Reseta para tocar rapidamente se o mouse passar direto
@@ -109,18 +110,48 @@ function tocarSomHover() {
         hoverSound.play().catch(() => {});
     }
 }
+
 if (aceitar) {
     aceitar.addEventListener("mouseenter", tocarSomHover);
     
     aceitar.addEventListener("click", () => {
-        // Se tiver som de clique do botão, toca primeiro
-        if (typeof somClique !== 'undefined') somClique.play().catch(() => {});
-        
-        // Dispara a transição com o delay de 82ms coordenado com o vídeo
-        iniciarTransicaoPorta();
+        aceitarDestino();
     });
 }
 
+// ===================================================
+// ACEITAR DESTINO (AÇÃO DE ENTRAR)
+// ===================================================
+async function aceitarDestino() {
+    // 1. TOCA O SOM DE CLIQUE DO MOUSE IMEDIATAMENTE
+    if (clickSound) {
+        clickSound.currentTime = 0;
+        clickSound.volume = 0.25;
+        clickSound.play().catch(() => {});
+    }
+
+    // Esconde a tela de escolha
+    choice.style.display = "none";
+    
+    // Diminui o som do vento (garanta que essa função exista no seu script)
+    if (typeof diminuirVento === 'function') {
+        diminuirVento();
+    }
+
+    // Ativa o efeito de neblina se os elementos existirem
+    if (fogLeft && fogRight) {
+        fogLeft.style.opacity = "1";
+        fogRight.style.opacity = "1";
+        fogLeft.style.left = "0";
+        fogRight.style.right = "0";
+    }
+
+    // 2. REDIRECIONA PARA O LABORATÓRIO DENTRO DA PASTA CORRETA
+    // Mantemos o delay para os efeitos visuais e sonoros acontecerem antes de mudar de página
+    setTimeout(() => {
+        window.location.href = "Alchemy-Lab/aula.html";
+    }, 82);
+}
 // ===================================================
 // ACEITAR DESTINO (AÇÃO DE ENTRAR)
 // ===================================================
