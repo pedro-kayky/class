@@ -65,7 +65,7 @@ window.onload = () => {
     }
 
     // OPÇÃO A: Se a pasta "aula" estiver do lado do seu arquivo "laboratorio.html"
-    window.location.href = "/aula/aula.html"; 
+    window.location.href = "../aula/aula.html"; 
 
     // OPÇÃO B: Se o arquivo se chamar "aula-coquetel.html" e estiver na mesma pasta principal
     // window.location.href = "aula-coquetel.html";
