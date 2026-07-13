@@ -1,0 +1,430 @@
+/* ========================================================= */
+/* RESET */
+/* ========================================================= */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    background: #05050a;
+    font-family: "Shippori Mincho", "Yu Gothic UI", "Segoe UI", sans-serif;
+    cursor: none;
+    color: white;
+}
+
+/* ========================================================= */
+/* BACKGROUND */
+/* ========================================================= */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: 
+        radial-gradient(circle at center, rgba(139, 92, 246, 0.15), transparent 65%),
+        radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.08), transparent 45%);
+    z-index: -5;
+}
+
+/* ========================================================= */
+/* CURSOR CUSTOMIZADO */
+/* ========================================================= */
+#cursor {
+    position: fixed;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: white;
+    box-shadow:
+        0 0 10px white,
+        0 0 20px #a78bfa,
+        0 0 35px #3b82f6;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+/* ========================================================= */
+/* TEXTO DOS DIÁLOGOS */
+/* ========================================================= */
+#texto {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    text-align: center;
+    font-size: clamp(28px, 4.5vw, 60px);
+    font-weight: 300;
+    line-height: 1.6;
+    letter-spacing: 4px;
+    color: #f3f4f6;
+    text-shadow:
+        0 0 12px rgba(255, 255, 255, 0.6),
+        0 0 25px rgba(96, 165, 250, 0.5),
+        0 0 50px rgba(139, 92, 246, 0.3);
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    user-select: none;
+    z-index: 30;
+}
+
+/* ========================================================= */
+/* TELA DE ESCOLHA (CHOICE) */
+/* ========================================================= */
+#choice {
+    position: fixed;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: rgba(3, 3, 7, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 100;
+}
+
+#choice h2 {
+    font-size: clamp(32px, 4vw, 55px);
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+    color: #f3f4f6;
+    text-shadow: 0 0 20px rgba(167, 139, 250, 0.6);
+}
+
+#choice p {
+    margin-bottom: 40px;
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: #9ca3af;
+}
+
+/* ========================================================= */
+/* BOTÕES DE DECISÃO */
+/* ========================================================= */
+/* ========================================================= */
+/* BOTÕES DE DECISÃO (ESTILO PREMIUM RPG) */
+/* ========================================================= */
+.buttons {
+    position: relative;
+    width: 700px;
+    height: 180px;
+    /* Centraliza o container na tela para os absolutos ficarem perfeitos */
+    margin: 0 auto; 
+}
+
+/* Configuração Geral para TODOS os botões do sistema */
+button {
+    width: 210px;
+    height: 65px;
+    border-radius: 12px; 
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    outline: none;
+    font-family: "Shippori Mincho", "Yu Mincho", "MS Mincho", serif;
+    transition: 
+        transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), 
+        box-shadow 0.2s ease, 
+        background 0.3s, 
+        border-color 0.3s,
+        color 0.3s;
+}
+
+/* Apenas os botões de escolha da introdução (Fase 1) devem ser absolutos */
+#aceitar, #nao {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* Centraliza na vertical dentro dos 180px */
+}
+
+/* INTERAÇÃO: Adicione IDs ou classes únicas no seu HTML para dar a distância */
+#aceitar {
+    left: 80px; /* Afasta 80px da borda esquerda do container */
+}
+
+#nao {
+    right: 80px; /* Afasta 80px da borda direita do container */
+}
+
+/* -------------------------------------------
+   BOTÃO ACCEPT (OURO ALQUÍMICO PULSANTE)
+------------------------------------------- */
+#aceitar {
+    left: 100px;
+    top: 40px;
+    color: #fff;
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+    border: 2px solid #fbbf24;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 
+        0 0 20px rgba(245, 158, 11, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.4);
+    animation: pulsarBotaoOuro 2.5s infinite ease-in-out;
+}
+
+#aceitar:hover {
+    background: #7c3aed;
+    color: white;
+    border-color: #9333ea;
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.6);
+    transform: translateY(-50%) scale(1.05); /* Mantém o alinhamento vertical e cresce um pouco */
+}
+
+
+
+#aceitar:active {
+    transform: scale(0.98) translateY(1px);
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+}
+
+/* Animação sutil de pulsação para o botão de aceitar */
+@keyframes pulsarBotaoOuro {
+    0%, 100% { box-shadow: 0 0 15px rgba(245, 158, 11, 0.4); }
+    50% { box-shadow: 0 0 30px rgba(251, 191, 36, 0.7); }
+}
+
+/* -------------------------------------------
+   BOTÃO DECLINE (ENERGIA SOMBRIA / FUGITIVO)
+   ------------------------------------------- */
+#nao {
+    left: 400px;
+    top: 40px;
+    background: rgba(17, 24, 39, 0.6);
+    color: #9ca3af;
+    border: 2px solid #374151;
+    backdrop-filter: blur(4px);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.6),
+        inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    /* ATENÇÃO: Mantido o transform menor aqui para o efeito de fuga do JS não quebrar */
+    transition: transform 0.1s ease-out, background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+#nao:hover {
+    background: rgba(244, 63, 94, 0.1);
+    color: #f43f5e;
+    border-color: #f43f5e;
+    box-shadow: 0 0 20px rgba(244, 63, 94, 0.3);
+    transform: translateY(-50%) scale(1.05);
+}
+
+#nao:active {
+    background: #111827;
+}
+
+/* ========================================================= */
+/* AMBIENCIA: FOG & FLASH */
+/* ========================================================= */
+#fogLeft, #fogRight {
+    position: fixed;
+    top: 0;
+    width: 50vw;
+    height: 100vh;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 2s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 200;
+}
+
+#fogLeft {
+    left: -60vw;
+    background: radial-gradient(circle at right, rgba(255, 255, 255, 0.15), transparent 70%);
+}
+
+#fogRight {
+    right: -60vw;
+    background: radial-gradient(circle at left, rgba(255, 255, 255, 0.15), transparent 70%);
+}
+
+#flash {
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    z-index: 350;
+}
+
+#introVideo {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    display: none;
+    opacity: 1;
+    transition: opacity 1.2s ease;
+    z-index: 300;
+}
+
+/* ========================================================= */
+/* LOADING SCREEN */
+/* ========================================================= */
+#loadingScreen {
+    position: fixed;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #020205;
+    z-index: 400;
+}
+
+#academyLogo {
+    font-size: 110px;
+    margin-bottom: 15px;
+    color: #f59e0b;
+    animation: logoGlow 3s infinite ease-in-out;
+}
+
+@keyframes logoGlow {
+    0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.3));
+    }
+    50% {
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 30px rgba(245, 158, 11, 0.8));
+    }
+}
+
+#loadingScreen h1 {
+    font-size: 42px;
+    font-weight: 400;
+    margin-bottom: 15px;
+    letter-spacing: 6px;
+    
+    /* TRUQUE GÊNIO: Força o background a ter o tamanho exato do texto */
+    display: inline-block; 
+    
+    background: linear-gradient(to right, #fff, #93c5fd, #fff);
+    
+    /* Garante compatibilidade máxima nos navegadores */
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent; /* Fallback caso o navegador antigo falhe */
+    
+    /* Evita que o efeito corte letras com perninhas ou itálico */
+    padding-bottom: 5px; 
+}
+
+#loadingMessage {
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #6b7280;
+    margin-bottom: 30px;
+}
+
+/* LOADING BAR COM BRILHO */
+#loadingBar {
+    width: min(600px, 80vw);
+    height: 12px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #111827;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.1);
+}
+
+#loadingProgress {
+    width: 0%;
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #2563eb, #60a5fa, #34d399);
+    box-shadow: 0 0 10px rgba(96, 165, 250, 0.7);
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#loadingPercent {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #9ca3af;
+    font-family: monospace;
+}
+
+/* ========================================================= */
+/* AREA DO JOGO (LABORATÓRIO) */
+/* ========================================================= */
+#game {
+    position: fixed;
+    inset: 0;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, #0d1117 0%, #020205 100%);
+}
+
+#game h1 {
+    font-size: 48px;
+    font-weight: 400;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+#game p {
+    font-size: 20px;
+    color: #4b5563;
+}
+
+/* ========================================================= */
+/* PARTÍCULAS MÁGICAS DO MOUSE */
+/* ========================================================= */
+.magic {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #fbbf24;
+    box-shadow: 0 0 8px #f59e0b;
+    pointer-events: none;
+    animation: magicParticle 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes magicParticle {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -60px) scale(0.2);
+    }
+}
+
+/* ========================================================= */
+/* RESPONSIVIDADE INTERATIVA */
+/* ========================================================= */
+@media(max-width: 900px){
+    .buttons {
+        width: 100%;
+        height: 220px;
+    }
+    #aceitar {
+        left: 50%;
+        top: 20px;
+        transform: translateX(-50%);
+    }
+    #aceitar:hover {
+        transform: translateX(-50%) scale(1.06);
+    }
+    #nao {
+        left: 50%;
+        top: 110px;
+        transform: translateX(-50%);
+    }
+}

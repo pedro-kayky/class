@@ -1,0 +1,331 @@
+/* ==========================================================================
+   CONFIGURAÇÕES GERAIS DA TELA DA AULA
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    background: #040408; /* Um tom ligeiramente mais escuro que o laboratório */
+    font-family: "Shippori Mincho", "Yu Mincho", "MS Mincho", serif;
+    color: #e2e8f0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CONTAINER PRINCIPAL CENTRALIZADO */
+.container-grimorio {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* BOTÃO VOLTAR (DISCRETO NO TOPO) */
+.btn-voltar-lab {
+    position: absolute;
+    top: -50px;
+    left: 20px;
+    color: #a78bfa;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: color 0.3s, transform 0.2s;
+}
+
+.btn-voltar-lab:hover {
+    color: #c084fc;
+    transform: translateX(-3px);
+}
+/* CONTAINER DE SORTEIO MÍSTICO */
+.painel-sorteio {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px dashed rgba(124, 58, 237, 0.3);
+    padding: 25px;
+    border-radius: 12px;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.status-sorteio {
+    font-size: 16px;
+    color: #a78bfa;
+    letter-spacing: 1px;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.btn-secundario {
+    background: transparent;
+    border: 1px solid #7c3aed;
+    color: #c084fc;
+    padding: 12px 24px;
+    font-family: "Shippori Mincho", serif;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    letter-spacing: 1px;
+    box-shadow: 0 0 10px rgba(124, 58, 237, 0.1);
+    transition: all 0.3s;
+}
+
+.btn-secundario:hover {
+    background: rgba(124, 58, 237, 0.1);
+    box-shadow: 0 0 15px rgba(124, 58, 237, 0.3);
+    transform: scale(1.02);
+}
+/* ==========================================================================
+   ESTILIZAÇÃO DO GRIMÓRIO (O LIVRO)
+   ========================================================================== */
+.livro-recipiente {
+    width: 100%;
+    max-width: 1050px; /* Aumentamos um pouco a largura para caber o vídeo */
+    min-height: 550px;
+    background: rgba(13, 13, 25, 0.75);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    padding: 40px 50px;
+    display: flex;
+}
+
+/* CONTROLE DE EXIBIÇÃO DAS PÁGINAS */
+.pagina-livro {
+    display: none; /* Esconde por padrão */
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Classe ativada pelo JavaScript para virar a página */
+.pagina-livro.ativa {
+    display: flex;
+    flex-direction: row; /* Lado a lado */
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    width: 100%;
+}
+
+/* NUMERAÇÃO ROMANA NO TOPO */
+.numero-pagina {
+    font-size: 14px;
+    color: #7c3aed;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(124, 58, 237, 0.5);
+}
+
+.columna-esquerda {
+    flex: 1.2;
+    text-align: left; /* Texto alinhado a esquerda fica mais elegante com vídeo ao lado */
+}
+.columna-esquerda .divisor-magico {
+    margin: 20px 0; /* Alinha o divisor à esquerda */
+}
+.columna-direita {
+    flex: 0.8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.moldura-habilidade {
+    position: relative;
+    width: 100%;
+    max-width: 340px;
+    height: 220px;
+    border-radius: 12px;
+    border: 2px solid rgba(167, 139, 250, 0.4);
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.15), inset 0 0 20px rgba(0,0,0,0.6);
+    overflow: hidden;
+}
+
+.video-previa-habilidade {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Faz o vídeo preencher a moldura perfeitamente */
+    opacity: 0.85;
+    transition: opacity 0.3s;
+}
+
+.moldura-habilidade:hover .video-previa-habilidade {
+    opacity: 1; /* Brilha mais ao passar o mouse */
+}
+
+/* Legenda abaixo do vídeo */
+.legenda-habilidade {
+    margin-top: 12px;
+    font-size: 12px;
+    color: #a78bfa;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px rgba(167, 139, 250, 0.3);
+}
+
+/* TÍTULOS E SUBTÍTULOS MÍSTICOS */
+.pagina-livro h2 {
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: #ffffff;
+    margin-bottom: 5px;
+}
+
+.subtitulo {
+    font-size: 13px;
+    color: #a78bfa;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* DIVISOR DE PÁGINA ESTILIZADO */
+.divisor-magico {
+    width: 60px;
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #7c3aed, transparent);
+    margin: 25px 0;
+}
+
+/* BLOCO DE TEXTO NARRATIVO */
+.texto-pagina {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #cbd5e1;
+    max-width: 620px;
+    margin-bottom: 40px;
+}
+
+.texto-pagina p {
+    margin-bottom: 20px;
+}
+
+.texto-pagina strong {
+    color: #f43f5e; /* Destaca palavras cruciais como a regra de trios */
+}
+
+/* ESTRUTURA DOS CRITÉRIOS DE AVALIAÇÃO */
+.criterios-lista {
+    list-style: none;
+    text-align: left;
+    max-width: 400px;
+    margin: 25px auto;
+    padding-left: 10px;
+}
+
+.criterios-lista li {
+    font-size: 15px;
+    margin-bottom: 12px;
+    color: #94a3b8;
+}
+
+.criterios-lista strong {
+    color: #34d399; /* Verde neon para os critérios de sucesso */
+}
+
+/* CAIXA DE AVISO (REGRA DE OURO) */
+.alerta-magico {
+    background: rgba(244, 63, 94, 0.05);
+    border: 1px solid rgba(244, 63, 94, 0.15);
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-top: 30px;
+    border-left: 3px solid #f43f5e;
+}
+
+/* ==========================================================================
+   SISTEMA DE BOTÕES DO GRIMÓRIO
+   ========================================================================== */
+.botoes-navegacao {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+}
+
+/* BOTÃO PADRÃO PARA AVANÇAR */
+.btn-passar, .btn-concluir, .btn-voltar {
+    height: 50px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    font-family: "Shippori Mincho", serif;
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.btn-passar {
+    width: 180px;
+    background: #7c3aed;
+    border: 1px solid #9333ea;
+    color: white;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+}
+
+.btn-passar:hover {
+    background: #6d28d9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.45);
+}
+
+/* BOTÃO DE RETROCEDER PÁGINA */
+.btn-voltar {
+    width: 130px;
+    background: transparent;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    color: #94a3b8;
+}
+
+.btn-voltar:hover {
+    background: rgba(255, 255, 255, 0.03);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* BOTÃO FINAL DE SUBMISSÃO (DESAFIO) */
+.btn-concluir {
+    width: 220px;
+    background: #10b981; /* Verde esmeralda para ativação */
+    border: 1px solid #059669;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.btn-concluir:hover {
+    background: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+}
+
+/* ==========================================================================
+   ANIMAÇÃO MÍSTICA DE TRANSIÇÃO (FADE IN + SLIDE)
+   ========================================================================== */
+@keyframes virarPagina {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.99);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}

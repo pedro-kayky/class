@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Alchemy Academy</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- ================================= -->
+    <!-- ÁUDIOS -->
+    <!-- ================================= -->
+
+    <audio id="vento" loop>
+        <source src="/Alchemy-Lab/audio/dragon-studio-winter-wind-402331.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="doorSound">
+        <source src="/Alchemy-Lab/audio/dragon-studio-door-opening-454242.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="typeSound">
+        <source src="/Alchemy-Lab/audio/estudiocoati-maquina-de-escribir_tipeo-typewritter-machine-typing-218133.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="music" loop>
+        <source src="/Alchemy-Lab/audio/coco-begins-his-journey.mp3" type="audio/mpeg">
+    </audio>
+
+
+
+    <!-- ================================= -->
+    <!-- CURSOR -->
+    <!-- ================================= -->
+
+    <div id="cursor"></div>
+
+
+
+    <!-- ================================= -->
+    <!-- PARTÍCULAS -->
+    <!-- (JS cria automaticamente) -->
+    <!-- ================================= -->
+
+
+
+    <!-- ================================= -->
+    <!-- HISTÓRIA -->
+    <!-- ================================= -->
+
+    <div id="texto"></div>
+
+
+
+    <!-- ================================= -->
+    <!-- ESCOLHA -->
+    <!-- ================================= -->
+
+    <section id="choice">
+
+        <h2>
+
+            あなたは招待されました
+
+        </h2>
+
+        <p>
+
+            Will you accept the invitation?
+
+        </p>
+
+        <div class="buttons">
+
+            <button id="aceitar">
+
+                Accept
+
+            </button>
+
+            <button id="nao">
+
+                Decline
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================================= -->
+    <!-- NEBLINA -->
+    <!-- ================================= -->
+
+    <div id="fogLeft"></div>
+
+    <div id="fogRight"></div>
+
+
+
+    <!-- ================================= -->
+    <!-- FLASH -->
+    <!-- ================================= -->
+
+    <div id="flash"></div>
+
+
+
+    <!-- ================================= -->
+    <!-- VÍDEO -->
+    <!-- ================================= -->
+
+    <video
+        id="introVideo"
+        preload="auto"
+        playsinline>
+
+        <source
+            src="/Alchemy-Lab/audio/Video Project 1.mp4"
+            type="video/mp4">
+
+    </video>
+
+
+
+    <!-- ================================= -->
+    <!-- LOADING -->
+    <!-- ================================= -->
+
+    <section id="loadingScreen">
+
+        <div id="academyLogo">
+
+            ⚜
+
+        </div>
+
+        <h1>
+
+            Alchemy Academy
+
+        </h1>
+
+        <p id="loadingMessage">
+
+            Initializing...
+
+        </p>
+
+        <div id="loadingBar">
+
+            <div id="loadingProgress"></div>
+
+        </div>
+
+        <span id="loadingPercent">
+
+            0%
+
+        </span>
+
+    </section>
+
+<audio id="clickSound">
+    <source src="/Alchemy-Lab/audio/skyscraper_seven-click-buttons-ui-menu-sounds-effects-button-13-205396.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="hoverSound">
+    <source src="/Alchemy-Lab/audio/lesiakower-minimalist-button-hover-sound-effect-399749.mp3" type="audio/mpeg">
+</audio>
+
+    <!-- ================================= -->
+    <!-- LABORATÓRIO -->
+    <!-- ================================= -->
+
+    <section id="game">
+
+        <header>
+
+            <h1>
+
+                🧪 Alchemy Laboratory
+
+            </h1>
+
+            <p>
+
+                Welcome, Young Alchemist.
+
+            </p>
+
+        </header>
+
+
+
+        <!-- Bancada -->
+
+        <main id="lab">
+
+            <!-- Aqui depois vamos colocar
+                 ingredientes,
+                 frascos,
+                 animações,
+                 etc -->
+
+        </main>
+
+    </section>
+
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

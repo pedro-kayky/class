@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 01: カクテルの基礎</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="aula.css">
+</head>
+<body>
+
+    <audio id="somAmbiente" loop>
+        <source src="/Alchemy-Lab/audio/universfield-a-calm-ambient-atmosphere-158464.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="somPagina">
+        <source src="/Alchemy-Lab/audio/creatorshome-turn-a-page-336933.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="somSorteio">
+        <source src="/Alchemy-Lab/audio/freesound_community-073088_2d6-rolling-dice-37051.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container-grimorio">
+        <a href="../laboratorio.html" class="btn-voltar-lab">← 研究室に戻る (Back)</a>
+
+        <div class="livro-recipiente">
+            
+            <div class="pagina-livro ativa" id="pag1">
+                <div class="columna-esquerda">
+                    <span class="numero-pagina">I</span>
+                    <h2>第一章：液体錬金術の真理</h2>
+                    <p class="subtitulo">iquid Alchemy (Core Mixology)</p>
+                    <hr class="divisor-magico">
+                    
+                    <div class="texto-pagina">
+                        <p>実技実習の第一試練へようこそ。この講義では、退屈な理論を捨て去り、味覚、密度、そして質感の完璧な調和（バランス）を支配する方法を学びます。</p>
+                        <p>甘味、酸味、そしてアルコールという「３つの元素」がどのように融合し、唯一無二の感覚体験を生み出すかを理解することなのです。</p>
+                    </div>
+                    
+                    <button class="btn-passar" onclick="avancarPagina('pag2')">ページをめくる (Next) →</button>
+                </div>
+
+                <div class="columna-direita">
+                    <div class="moldura-habilidade">
+                        <video autoplay loop muted playsinline class="video-previa-habilidade">
+                            <source src="/Alchemy-Lab/audio/derramando.mp4" type="video/mp4">
+                        </video>
+                        <div class="brilho-moldura"></div>
+                    </div>
+                    <span class="legenda-habilidade">習得スキル：施法調合 (Dynamic Mixology)</span>
+                </div>
+            </div>
+
+            <div class="pagina-livro" id="pag2">
+                <div class="columna-esquerda">
+                    <span class="numero-pagina">II</span>
+                    <h2>第二章：運命の連帯</h2>
+                    <p class="subtitulo">The Power of Cooperation</p>
+                    <hr class="divisor-magico">
+                    
+                    <div class="texto-pagina">
+                        <p>この試練をよりダイナミックにするため、錬金術はあなたに「協調」を求めます。**これより、全生徒を完全ランダムで２人または３人のチームに編成します！**</p>
+                        <p>各チームには専用の錬成台（バンカダ）が与えられ、用意された霊薬のみを使って完全オリジナルのカクテルを創造しなければなりません。</p>
+                        
+                        <div class="painel-sorteio">
+                            <div id="visorSorteio" class="status-sorteio">運命の選択：保留中 (Pending)</div>
+                            <button id="btnSorteio" class="btn-secundario" onclick="executarSorteioMistico()">チームの魔力同調を開始する 🔮</button>
+                        </div>
+                    </div>
+                    
+                    <div class="botoes-navegacao">
+                        <button class="btn-voltar" onclick="avancarPagina('pag1')">← 戻る (back)</button>
+                        <button id="btnAvancarPag3" class="btn-passar" style="opacity: 0.3; pointer-events: none;" onclick="avancarPagina('pag3')">次へ進む (Avançar) →</button>
+                    </div>
+                </div>
+
+                <div class="columna-direita">
+                    <div class="moldura-habilidade">
+                        <video autoplay loop muted playsinline class="video-previa-habilidade">
+                            <source src="/Alchemy-Lab/audio/mexendo-gelo.mp4" type="video/mp4">
+                        </video>
+                        <div class="brilho-moldura"></div>
+                    </div>
+                    <span class="legenda-habilidade">システム：協調錬成 (Random Team Formation)</span>
+                </div>
+            </div>
+
+            <div class="pagina-livro" id="pag3">
+                <div class="columna-esquerda">
+                    <span class="numero-pagina">III</span>
+                    <h2>最終試練：審判の刻</h2>
+                    <p class="subtitulo">The Great Judgment</p>
+                    <hr class="divisor-magico">
+                    
+                    <div class="texto-pagina">
+                        <p>調合時間が終了した後、すべてのチームが集結し、お互いの創造物を試飲して評価し合います。最終的な評決は、以下の３つの根源的基準に基づいて下されます：</p>
+                        
+                        <ul class="criterios-lista">
+                            <li><strong>👅 味 (flavor)：</strong> 口の中に広がる完璧な調和。</li>
+                            <li><strong>👃 香り (Aroma)：</strong> 感覚を刺激する第一印象の芳香。</li>
+                            <li><strong>🎨 創造性 (Creativity)：</strong> 独創性と美的な視覚表現。</li>
+                        </ul>
+                        
+                        <p class="alerta-magico">⚠️ <strong>黄金律 (The Golden Rule)：</strong> 今夜、最も優れた<strong>上位３組のカクテル</strong>を錬成したグループのみが、次の高位講義室への立ち入りを許されます！</p>
+                    </div>
+                    
+                    <div class="botoes-navegacao">
+                        <button class="btn-voltar" onclick="avancarPagina('pag2')">← 戻る (Back)</button>
+                        <button class="btn-concluir" onclick="finalizarGrimorio()">試練開始 (Start Challenge) ⚔️</button>
+                    </div>
+                </div>
+
+                <div class="columna-direita">
+                    <div class="moldura-habilidade">
+                        <video autoplay loop muted playsinline class="video-previa-habilidade">
+                            <source src="/Alchemy-Lab/audio/coquetel.mp4" type="video/mp4">
+                        </video>
+                        <div class="brilho-moldura"></div>
+                    </div>
+                    <span class="legenda-habilidade">試練ルール：三極審判 (Three Criteria)</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const somAmbiente = document.getElementById("somAmbiente");
+        const somPagina = document.getElementById("somPagina");
+        const somSorteio = document.getElementById("somSorteio");
+
+        window.onload = () => {
+            if(somAmbiente) {
+                somAmbiente.volume = 0.08;
+                somAmbiente.play().catch(() => {});
+            }
+        };
+
+        function avancarPagina(proximaPagId) {
+            if (somPagina) {
+                somPagina.currentTime = 0;
+                somPagina.volume = 0.3;
+                somPagina.play().catch(() => {});
+            }
+
+            document.querySelectorAll('.pagina-livro').forEach(pag => {
+                pag.classList.remove('ativa');
+            });
+            document.getElementById(proximaPagId).classList.add('ativa');
+        }
+
+        function executarSorteioMistico() {
+    const visor = document.getElementById("visorSorteio");
+    const btn = document.getElementById("btnSorteio");
+    const btnProximo = document.getElementById("btnAvancarPag3");
+    
+    if (somSorteio) {
+        somSorteio.currentTime = 0;
+        somSorteio.volume = 0.25;
+        somSorteio.play().catch(() => {});
+    }
+
+    btn.style.pointerEvents = "none";
+    btn.style.opacity = "0.5";
+    
+    let contador = 0;
+    
+    // Efeito visual de "computando e embaralhando" os números de 1 a 26
+    const intervalo = setInterval(() => {
+        // Gera números aleatórios de 1 a 26 apenas para efeito visual piscando na tela
+        const n1 = Math.floor(Math.random() * 26) + 1;
+        const n2 = Math.floor(Math.random() * 26) + 1;
+        const n3 = Math.floor(Math.random() * 26) + 1;
+        
+        const telasVisuais = [
+            `[ 🧙‍♂️ 魂の結合: ${n1}番 ⇄ ${n2}番 ]`,
+            `[ 🔮 魔力計算: ${n1}番 ⇄ ${n2}番 ⇄ ${n3}番 ]`,
+            `[ 🧪 チーム選定中... ]`,
+            `[ 陣形構築: ${n2}番 ⇄ ${n3}番 ]`
+        ];
+        
+        visor.innerText = telasVisuais[Math.floor(Math.random() * telasVisuais.length)];
+        visor.style.color = "#7c3aed";
+        contador++;
+        
+        if(contador > 15) { // Fim do suspense (cerca de 2 segundos)
+            clearInterval(intervalo);
+            
+            // Lógica Real: Decide se o grupo do usuário será uma dupla (2) ou trio (3)
+            const tamanhoDoGrupo = Math.random() > 0.5 ? 3 : 2;
+            const numerosSorteados = [];
+            
+            // Sorteia números únicos de 1 a 26 para o grupo
+            while(numerosSorteados.length < tamanhoDoGrupo) {
+                const numeroAleatorio = Math.floor(Math.random() * 26) + 1;
+                if(!numerosSorteados.includes(numeroAleatorio)) {
+                    numerosSorteados.push(numeroAleatorio);
+                }
+            }
+            
+            // Formata a exibição final baseada no resultado (Dupla ou Trio)
+            let resultadoTexto = "";
+            if(tamanhoDoGrupo === 2) {
+                resultadoTexto = `🔮 運命の二人（二人組）：${numerosSorteados[0]}番 ⇄ ${numerosSorteados[1]}番`;
+            } else {
+                resultadoTexto = `🔮 三位一体（三人組）：${numerosSorteados[0]}番 ⇄ ${numerosSorteados[1]}番 ⇄ ${numerosSorteados[2]}番`;
+            }
+            
+            visor.innerText = resultadoTexto;
+            visor.style.color = "#34d399"; // Verde de sucesso
+            visor.style.textShadow = "0 0 10px rgba(52, 211, 153, 0.4)";
+            
+            // Libera o botão de avançar página
+            btnProximo.style.opacity = "1";
+            btnProximo.style.pointerEvents = "all";
+        }
+    }, 120);
+}
+
+        function finalizarGrimorio() {
+            alert("錬成の準備を始めよ！己の錬成台（バンカダ）へ向かうがいい。");
+            localStorage.setItem("aula1_concluida", "true");
+            window.location.href = "/laboratorio/laboratorio.html"; 
+        }
+    </script>
+</body>
+</html>
