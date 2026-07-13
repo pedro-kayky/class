@@ -218,11 +218,31 @@
     }, 120);
 }
 
-        function finalizarGrimorio() {
-            alert("錬成の準備を始めよ！己の錬成台（バンカダ）へ向かうがいい。");
-            localStorage.setItem("aula1_concluida", "true");
-            window.location.href = "../laboratorio/laboratorio.html"; 
-        }
+       function finalizarGrimorio() {
+    // 1. Mostra o alerta na tela
+    alert("錬成の準備を始めよ！己の錬成台（バンカダ）へ向かうがいい。");
+    
+    // 2. Salva o progresso no localStorage
+    localStorage.setItem("aula1_concluida", "true");
+    
+    // 3. Força a limpeza das mídias antes de sair para evitar travamentos
+    document.querySelectorAll('audio, video').forEach(media => {
+        media.pause();
+        media.src = "";
+        media.load();
+    });
+
+    // 4. Redirecionamento forçado com fallback (garante que vai mudar de página)
+    const urlDestino = "../laboratorio/laboratorio.html";
+    
+    // Tenta o método padrão de clique
+    window.location.href = urlDestino; 
+    
+    // Caso o navegador ignore o href por segurança, força a substituição da URL após 100 milissegundos
+    setTimeout(() => {
+        window.location.replace(urlDestino);
+    }, 100);
+}
     </script>
 </body>
 </html>
