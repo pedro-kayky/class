@@ -18,7 +18,18 @@ window.onload = () => {
         console.log("Aguardando clique na página para iniciar trilha sonora.");
     });
 }
+    document.addEventListener("DOMContentLoaded", () => {
+    // 1. Captura o elemento span do HTML pelo ID
+    const progressoTexto = document.getElementById("progresso-texto");
+    
+    // 2. Busca o valor do bônus que foi salvo lá no quiz do Grimório
+    const bonusSalvo = localStorage.getItem("bonus_quiz_aula1");
 
+    // 3. Se existir um bônus salvo, atualiza o texto na tela!
+    if (bonusSalvo && progressoTexto) {
+        progressoTexto.innerText = `${bonusSalvo}%`;
+    }
+});
     // Seleciona os cards ativos
     const aulasAtivas = document.querySelectorAll('.card-aula.ativa');
 

@@ -26,16 +26,17 @@
 
         <div class="livro-recipiente">
             
+            <!-- PAGINA 1 -->
             <div class="pagina-livro ativa" id="pag1">
                 <div class="columna-esquerda">
                     <span class="numero-pagina">I</span>
-                    <h2>第一章：液体錬金術の真理</h2>
-                    <p class="subtitulo">iquid Alchemy (Core Mixology)</p>
+                    <h2>第一章：カクテル調合の基本</h2>
+                    <p class="subtitulo">Liquid Alchemy (Core Mixology)</p>
                     <hr class="divisor-magico">
                     
                     <div class="texto-pagina">
-                        <p>実技実習の第一試練へようこそ。この講義では、退屈な理論を捨て去り、味覚、密度、そして質感の完璧な調和（バランス）を支配する方法を学びます。</p>
-                        <p>甘味、酸味、そしてアルコールという「３つの元素」がどのように融合し、唯一無二の感覚体験を生み出すかを理解することなのです。</p>
+                        <p>最初の授業へようこそ！この授業では、難しいルールではなく、味、甘さ、酸っぱさのちょうどいいバランスを作る方法を学びます。</p>
+                        <p>「甘味（あまみ）」「酸味（さんみ）」「アルコール」の３つの要素を上手に混ぜて、最高の一杯（カクテル）を作ってみましょう！</p>
                     </div>
                     
                     <button class="btn-passar" onclick="avancarPagina('pag2')">ページをめくる (Next) →</button>
@@ -48,28 +49,40 @@
                         </video>
                         <div class="brilho-moldura"></div>
                     </div>
-                    <span class="legenda-habilidade">習得スキル：施法調合 (Dynamic Mixology)</span>
+                    <span class="legenda-habilidade">手に入るスキル：カクテル調合 (Cocktail Making)</span>
                 </div>
             </div>
 
+            <!-- PAGINA 2 (SORTEIO + QUIZ) -->
             <div class="pagina-livro" id="pag2">
                 <div class="columna-esquerda">
                     <span class="numero-pagina">II</span>
-                    <h2>第二章：運命の連帯</h2>
+                    <h2>第二章：チームの決定とミニクイズ</h2>
                     <p class="subtitulo">The Power of Cooperation</p>
                     <hr class="divisor-magico">
                     
                     <div class="texto-pagina">
-                        <p>この試練をよりダイナミックにするため、錬金術はあなたに「協調」を求めます。**これより、全生徒を完全ランダムで２人または３人のチームに編成します！**</p>
-                        <p>各チームには専用の錬成台（バンカダ）が与えられ、用意された霊薬のみを使って完全オリジナルのカクテルを創造しなければなりません。</p>
+                        <p>今回の授業を楽しくするために、みんなで協力しましょう！**これから、ランダムで2人または3人のチームを作ります！**</p>
+                        <p>チームで協力して、準備された材料（ざいりょう）だけを使って、オリジナルのカクテルを作ってください。</p>
                         
-                        <div class="painel-sorteio">
-                            <div id="visorSorteio" class="status-sorteio">運命の選択：保留中 (Pending)</div>
-                            <button id="btnSorteio" class="btn-secundario" onclick="executarSorteioMistico()">チームの魔力同調を開始する 🔮</button>
+                        <!-- Painel de Sorteio -->
+                        <div class="painel-sorteio" id="painelSorteio">
+                            <div id="visorSorteio" class="status-sorteio">運命の選択：ボタンを押してください</div>
+                            <button id="btnSorteio" class="btn-secundario" onclick="executarSorteioMistico()">チームを決める 🔮</button>
+                        </div>
+
+                        <!-- Painel do Quiz (Inicia Escondido) -->
+                        <div id="painelQuiz" class="painel-sorteio" style="display: none; margin-top: 15px; text-align: left; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px;">
+                            <h3 style="color: #7c3aed; margin-top: 0; font-size: 1.1rem;">🧪 チーム魔力テスト (Mini Quiz)</h3>
+                            <div id="containerQuestao">
+                                <p id="textoPergunta" style="font-weight: bold; margin-bottom: 10px;"></p>
+                                <div id="opcoesResposta" style="display: flex; flex-direction: column; gap: 8px;"></div>
+                            </div>
+                            <div id="resultadoQuiz" style="margin-top: 10px; font-weight: bold; text-align: center;"></div>
                         </div>
                     </div>
                     
-                    <div class="botoes-navegacao">
+                    <div class="botoes-navegacao" style="margin-top: 15px;">
                         <button class="btn-voltar" onclick="avancarPagina('pag1')">← 戻る (back)</button>
                         <button id="btnAvancarPag3" class="btn-passar" style="opacity: 0.3; pointer-events: none;" onclick="avancarPagina('pag3')">次へ進む (Next) →</button>
                     </div>
@@ -82,27 +95,28 @@
                         </video>
                         <div class="brilho-moldura"></div>
                     </div>
-                    <span class="legenda-habilidade">システム：協調錬成 (Random Team Formation)</span>
+                    <span class="legenda-habilidade">システム：チーム決め (Random Team)</span>
                 </div>
             </div>
 
+            <!-- PAGINA 3 -->
             <div class="pagina-livro" id="pag3">
                 <div class="columna-esquerda">
                     <span class="numero-pagina">III</span>
-                    <h2>最終試練：審判の刻</h2>
+                    <h2>最終試練：みんなで評価する</h2>
                     <p class="subtitulo">The Great Judgment</p>
                     <hr class="divisor-magico">
                     
                     <div class="texto-pagina">
-                        <p>調合時間が終了した後、すべてのチームが集結し、お互いの創造物を試飲して評価し合います。最終的な評決は、以下の３つの根源的基準に基づいて下されます：</p>
+                        <p>カクテルを作ったあと、みんなで飲み比べて、お互いに評価（ひょうか）します。ポイントは次の３つです：</p>
                         
                         <ul class="criterios-lista">
-                            <li><strong>👅 味 (flavor)：</strong> 口の中に広がる完璧な調和。</li>
-                            <li><strong>👃 香り (Aroma)：</strong> 感覚を刺激する第一印象の芳香。</li>
-                            <li><strong>🎨 創造性 (Creativity)：</strong> 独創性と美的な視覚表現。</li>
+                            <li><strong>👅 味 (Taste)：</strong> ちょうどいい甘さとおいしさ。</li>
+                            <li><strong>👃 香り (Aroma)：</strong> 食欲をそそる良い匂い。</li>
+                            <li><strong>🎨 見た目 (Look)：</strong> きれいで面白い見た目。</li>
                         </ul>
                         
-                        <p class="alerta-magico">⚠️ <strong>黄金律 (The Golden Rule)：</strong> 今夜、最も優れた<strong>上位３組のカクテル</strong>を錬成したグループのみが、次の高位講義室への立ち入りを許されます！</p>
+                        <p class="alerta-magico" style="font-size: 0.9rem;">⚠️ <strong>ルール：</strong> 今日、一番素晴らしいカクテルを作った上位3チームが、次のステップに進むことができます！</p>
                     </div>
                     
                     <div class="botoes-navegacao">
@@ -118,7 +132,7 @@
                         </video>
                         <div class="brilho-moldura"></div>
                     </div>
-                    <span class="legenda-habilidade">試練ルール：三極審判 (Three Criteria)</span>
+                    <span class="legenda-habilidade">試練ルール：3つの評価ポイント</span>
                 </div>
             </div>
 
@@ -149,100 +163,172 @@
             });
             document.getElementById(proximaPagId).classList.add('ativa');
         }
+// --- SISTEMA DE QUIZ ---
+        let perguntaAtual = 0;
+        let acertos = 0;
 
-        function executarSorteioMistico() {
-    const visor = document.getElementById("visorSorteio");
-    const btn = document.getElementById("btnSorteio");
-    const btnProximo = document.getElementById("btnAvancarPag3");
-    
-    if (somSorteio) {
-        somSorteio.currentTime = 0;
-        somSorteio.volume = 0.25;
-        somSorteio.play().catch(() => {});
-    }
-
-    btn.style.pointerEvents = "none";
-    btn.style.opacity = "0.5";
-    
-    let contador = 0;
-    
-    // Efeito visual de "computando e embaralhando" os números de 1 a 26
-    const intervalo = setInterval(() => {
-        // Gera números aleatórios de 1 a 26 apenas para efeito visual piscando na tela
-        const n1 = Math.floor(Math.random() * 26) + 1;
-        const n2 = Math.floor(Math.random() * 26) + 1;
-        const n3 = Math.floor(Math.random() * 26) + 1;
-        
-        const telasVisuais = [
-            `[ 🧙‍♂️ 魂の結合: ${n1}番 ⇄ ${n2}番 ]`,
-            `[ 🔮 魔力計算: ${n1}番 ⇄ ${n2}番 ⇄ ${n3}番 ]`,
-            `[ 🧪 チーム選定中... ]`,
-            `[ 陣形構築: ${n2}番 ⇄ ${n3}番 ]`
+        const perguntasQuiz = [
+            {
+                q: "Q1: カクテルのベース（Base）とは何のこと？",
+                options: ["氷のこと", "主役（メイン）になるお酒", "使うコップ（グラス）"],
+                correct: 1
+            },
+            {
+                q: "Q2: お酒とジュースを混ぜるために使う、カクテルの道具はどれ？",
+                options: ["シェーカー", "大きいスプーン", "ストロー"],
+                correct: 0
+            },
+            {
+                q: "Q3: カクテルを冷たくするために、最初にグラスに入れるものは？",
+                options: ["お湯", "塩", "氷"],
+                correct: 2
+            }
         ];
-        
-        visor.innerText = telasVisuais[Math.floor(Math.random() * telasVisuais.length)];
-        visor.style.color = "#7c3aed";
-        contador++;
-        
-        if(contador > 15) { // Fim do suspense (cerca de 2 segundos)
-            clearInterval(intervalo);
-            
-            // Lógica Real: Decide se o grupo do usuário será uma dupla (2) ou trio (3)
-            const tamanhoDoGrupo = Math.random() > 0.5 ? 3 : 2;
-            const numerosSorteados = [];
-            
-            // Sorteia números únicos de 1 a 26 para o grupo
-            while(numerosSorteados.length < tamanhoDoGrupo) {
-                const numeroAleatorio = Math.floor(Math.random() * 26) + 1;
-                if(!numerosSorteados.includes(numeroAleatorio)) {
-                    numerosSorteados.push(numeroAleatorio);
-                }
+
+        // 1. Criamos a função verificarResposta primeiro
+        window.verificarResposta = function(escolha) {
+            if (escolha === perguntasQuiz[perguntaAtual].correct) {
+                acertos++;
             }
-            
-            // Formata a exibição final baseada no resultado (Dupla ou Trio)
-            let resultadoTexto = "";
-            if(tamanhoDoGrupo === 2) {
-                resultadoTexto = `🔮 運命の二人（二人組）：${numerosSorteados[0]}番 ⇄ ${numerosSorteados[1]}番`;
-            } else {
-                resultadoTexto = `🔮 三位一体（三人組）：${numerosSorteados[0]}番 ⇄ ${numerosSorteados[1]}番 ⇄ ${numerosSorteados[2]}番`;
-            }
-            
-            visor.innerText = resultadoTexto;
-            visor.style.color = "#34d399"; // Verde de sucesso
-            visor.style.textShadow = "0 0 10px rgba(52, 211, 153, 0.4)";
-            
-            // Libera o botão de avançar página
-            btnProximo.style.opacity = "1";
-            btnProximo.style.pointerEvents = "all";
+            perguntaAtual++;
+            mostrarProximaPergunta();
         }
-    }, 120);
-}
 
-       function finalizarGrimorio() {
-    // 1. Mostra o alerta na tela
-    alert("錬成の準備を始めよ！己の錬成台（バンカダ）へ向かうがいい。");
-    
-    // 2. Salva o progresso no localStorage
-    localStorage.setItem("aula1_concluida", "true");
-    
-    // 3. Força a limpeza das mídias antes de sair para evitar travamentos
-    document.querySelectorAll('audio, video').forEach(media => {
-        media.pause();
-        media.src = "";
-        media.load();
-    });
+        // 2. Depois criamos a função que renderiza as perguntas na tela
+        window.mostrarProximaPergunta = function() {
+            const container = document.getElementById("containerQuestao");
+            const textoPerg = document.getElementById("textoPergunta");
+            const divOpcoes = document.getElementById("opcoesResposta");
 
-    // 4. Redirecionamento forçado com fallback (garante que vai mudar de página)
-    const urlDestino = "../laboratorio/laboratorio.html";
-    
-    // Tenta o método padrão de clique
-    window.location.href = urlDestino; 
-    
-    // Caso o navegador ignore o href por segurança, força a substituição da URL após 100 milissegundos
-    setTimeout(() => {
-        window.location.replace(urlDestino);
-    }, 100);
-}
+            if (perguntaAtual < perguntasQuiz.length) {
+                const dados = perguntasQuiz[perguntaAtual];
+                textoPerg.innerText = dados.q;
+                divOpcoes.innerHTML = "";
+
+                dados.options.forEach((opt, idx) => {
+                    const btnOpt = document.createElement("button");
+                    btnOpt.innerText = opt;
+                    btnOpt.className = "btn-secundario";
+                    btnOpt.style.width = "100%";
+                    btnOpt.style.margin = "2px 0";
+                    btnOpt.style.fontSize = "0.9rem";
+                    btnOpt.style.padding = "6px";
+                    
+                    // Associamos a função que agora já está declarada e visível globalmente
+                    btnOpt.onclick = () => verificarResposta(idx);
+                    
+                    divOpcoes.appendChild(btnOpt);
+                });
+            } else {
+                // Fim do Quiz
+                container.style.display = "none";
+                const resultado = document.getElementById("resultadoQuiz");
+                
+                // Calcula bônus: 1 acerto = 11%, 2 = 22%, 3 = 33%
+                let bonus = 0;
+                if (acertos === 1) bonus = 11;
+                if (acertos === 2) bonus = 22;
+                if (acertos === 3) bonus = 33;
+
+                // SALVA O BÔNUS NO LOCALSTORAGE PARA O LAB CONSEGUIR LER
+                localStorage.setItem("bonus_quiz_aula1", bonus.toString());
+
+                resultado.innerHTML = `
+                    <p style="color: #34d399; margin: 5px 0;">✨ クイズ終了！正解数: ${acertos}/${perguntasQuiz.length}</p>
+                    <p style="color: #7c3aed; font-size: 1.1rem; text-shadow: 0 0 5px rgba(124,58,237,0.3)">
+                        🔥 チームの魔力同調率がアップした！
+                    </p>
+                `;
+
+                // Libera o botão de avançar de vez
+                const btnProximo = document.getElementById("btnAvancarPag3");
+                btnProximo.style.opacity = "1";
+                btnProximo.style.pointerEvents = "all";
+            }
+        }
+        // --- SORTEIO MÍSTICO ---
+        function executarSorteioMistico() {
+            const visor = document.getElementById("visorSorteio");
+            const btn = document.getElementById("btnSorteio");
+            
+            if (somSorteio) {
+                somSorteio.currentTime = 0;
+                somSorteio.volume = 0.25;
+                somSorteio.play().catch(() => {});
+            }
+
+            btn.style.pointerEvents = "none";
+            btn.style.opacity = "0.5";
+            
+            let contador = 0;
+            
+            const intervalo = setInterval(() => {
+                const n1 = Math.floor(Math.random() * 26) + 1;
+                const n2 = Math.floor(Math.random() * 26) + 1;
+                const n3 = Math.floor(Math.random() * 26) + 1;
+                
+                const telasVisuais = [
+                    `[ 🧙‍♂️ メンバーを 選んでいます... ]`,
+                    `[ 🔮 魔力チェック: ${n1}番 ⇄ ${n2}番 ]`,
+                    `[ 🧪 チームを 作っています... ]`
+                ];
+                
+                visor.innerText = telasVisuais[Math.floor(Math.random() * telasVisuais.length)];
+                visor.style.color = "#7c3aed";
+                contador++;
+                
+                if(contador > 15) { 
+                    clearInterval(intervalo);
+                    
+                    const tamanhoDoGrupo = Math.random() > 0.5 ? 3 : 2;
+                    const numerosSorteados = [];
+                    
+                    while(numerosSorteados.length < tamanhoDoGrupo) {
+                        const numeroAleatorio = Math.floor(Math.random() * 26) + 1;
+                        if(!numerosSorteados.includes(numeroAleatorio)) {
+                            numerosSorteados.push(numeroAleatorio);
+                        }
+                    }
+                    
+                    let resultadoTexto = "";
+                    if(tamanhoDoGrupo === 2) {
+                        resultadoTexto = `🔮 運命のペア（2人組）：${numerosSorteados[0]}番 ⇄ ${numerosSorteados[1]}番`;
+                    } else {
+                        resultadoTexto = `🔮 運命のトリオ（3人組）：${numerosSorteados[0]}番 ⇄ ${numerosSorteados[1]}番 ⇄ ${numerosSorteados[2]}番`;
+                    }
+                    
+                    visor.innerText = resultadoTexto;
+                    visor.style.color = "#34d399"; 
+                    visor.style.textShadow = "0 0 10px rgba(52, 211, 153, 0.4)";
+                    
+                    // Esconde botão de sorteio e abre o painel do Quiz!
+                    btn.style.display = "none";
+                    document.getElementById("painelQuiz").style.display = "block";
+                    mostrarProximaPergunta();
+                }
+            }, 120);
+        }
+
+        // --- FINALIZAR GRIMÓRIO ---
+        function finalizarGrimorio() {
+            alert("錬成の準備を始めよ！己の錬成台（バンカダ）へ向かうがいい。");
+            
+            localStorage.setItem("aula1_concluida", "true");
+            
+            // Pausa as mídias para evitar travamentos
+            document.querySelectorAll('audio, video').forEach(media => {
+                media.pause();
+                media.src = "";
+                media.load();
+            });
+
+            const urlDestino = "../laboratorio/laboratorio.html";
+            window.location.href = urlDestino; 
+            
+            setTimeout(() => {
+                window.location.replace(urlDestino);
+            }, 100);
+        }
     </script>
 </body>
 </html>

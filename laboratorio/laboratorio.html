@@ -27,7 +27,7 @@
             <div class="progresso-sidebar">
                 <div class="texto-progresso">
                     <span>全体達成度</span>
-                    <span>0%</span>
+                        <span id="progresso-texto">0%</span>
                 </div>
                 <div class="barra-trilho">
                     <div class="barra-preenchimento" style="width: 0%;"></div>
@@ -116,7 +116,20 @@
             </div>
         </main>
     </div>
+    <script>
+        window.addEventListener("load", () => {
+            const progressoTexto = document.getElementById("progresso-texto");
+            const bonusSalvo = localStorage.getItem("bonus_quiz_aula1");
 
+            console.log("Tentando carregar o bônus no Lab:", bonusSalvo);
+
+            if (bonusSalvo !== null && progressoTexto) {
+                progressoTexto.innerText = `${bonusSalvo}%`;
+            }
+        });
+    </script>
+</body>
+</html>
     <script src="laboratorio.js"></script>
 </body>
 </html>

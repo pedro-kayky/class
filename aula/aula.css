@@ -46,6 +46,7 @@ body {
     color: #c084fc;
     transform: translateX(-3px);
 }
+
 /* CONTAINER DE SORTEIO MÍSTICO */
 .painel-sorteio {
     background: rgba(0, 0, 0, 0.3);
@@ -86,6 +87,7 @@ body {
     box-shadow: 0 0 15px rgba(124, 58, 237, 0.3);
     transform: scale(1.02);
 }
+
 /* ==========================================================================
    ESTILIZAÇÃO DO GRIMÓRIO (O LIVRO)
    ========================================================================== */
@@ -134,9 +136,11 @@ body {
     flex: 1.2;
     text-align: left; /* Texto alinhado a esquerda fica mais elegante com vídeo ao lado */
 }
+
 .columna-esquerda .divisor-magico {
     margin: 20px 0; /* Alinha o divisor à esquerda */
 }
+
 .columna-direita {
     flex: 0.8;
     display: flex;
@@ -180,7 +184,7 @@ body {
 
 /* TÍTULOS E SUBTÍTULOS MÍSTICOS */
 .pagina-livro h2 {
-    font-size: 28px;
+    font-size: 32px; /* Aumentado para melhor legibilidade */
     font-weight: 500;
     letter-spacing: 2px;
     color: #ffffff;
@@ -204,15 +208,9 @@ body {
 }
 
 /* BLOCO DE TEXTO NARRATIVO */
-.texto-pagina {
-    font-size: 16px;
-    line-height: 1.8;
-    color: #cbd5e1;
-    max-width: 620px;
-    margin-bottom: 40px;
-}
-
 .texto-pagina p {
+    font-size: 1.25rem !important; /* Aumentado para fácil leitura N3 */
+    line-height: 1.8; /* Mais espaçamento */
     margin-bottom: 20px;
 }
 
@@ -224,13 +222,13 @@ body {
 .criterios-lista {
     list-style: none;
     text-align: left;
-    max-width: 400px;
-    margin: 25px auto;
+    max-width: 450px;
+    margin: 25px 0;
     padding-left: 10px;
 }
 
 .criterios-lista li {
-    font-size: 15px;
+    font-size: 1.15rem !important; /* Aumentado para acessibilidade */
     margin-bottom: 12px;
     color: #94a3b8;
 }
@@ -245,9 +243,10 @@ body {
     border: 1px solid rgba(244, 63, 94, 0.15);
     padding: 15px 20px;
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 1.05rem !important; /* Aumentado */
     margin-top: 30px;
     border-left: 3px solid #f43f5e;
+    line-height: 1.6;
 }
 
 /* ==========================================================================
@@ -314,6 +313,45 @@ body {
     background: #059669;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+}
+
+/* ==========================================================================
+   ESTILOS ADICIONAIS EXCLUSIVOS DO MINI QUIZ (O QUE ESTAVA FALTANDO!)
+   ========================================================================== */
+#painelQuiz {
+    animation: virarPagina 0.4s ease-out;
+}
+
+#textoPergunta {
+    font-size: 1.25rem !important; /* Pergunta em destaque */
+    color: #ffffff;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+#opcoesResposta button {
+    font-size: 1.1rem !important; /* Opções fáceis de ler */
+    padding: 12px 15px !important;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(124, 58, 237, 0.2);
+    color: #e2e8f0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+#opcoesResposta button:hover {
+    background: rgba(124, 58, 237, 0.15);
+    border-color: #7c3aed;
+    color: #ffffff;
+    transform: translateX(4px);
+}
+
+#resultadoQuiz p {
+    font-size: 1.2rem !important;
+    font-weight: bold;
+    margin-top: 10px;
 }
 
 /* ==========================================================================
