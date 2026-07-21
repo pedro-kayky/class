@@ -164,88 +164,122 @@
             document.getElementById(proximaPagId).classList.add('ativa');
         }
 // --- SISTEMA DE QUIZ ---
-        let perguntaAtual = 0;
-        let acertos = 0;
+       // --- SISTEMA DE QUIZ ---
+let perguntaAtual = 0;
+let acertos = 0;
 
-        const perguntasQuiz = [
-            {
-                q: "Q1: カクテルのベース（Base）とは何のこと？",
-                options: ["氷のこと", "主役（メイン）になるお酒", "使うコップ（グラス）"],
-                correct: 1
-            },
-            {
-                q: "Q2: お酒とジュースを混ぜるために使う、カクテルの道具はどれ？",
-                options: ["シェーカー", "大きいスプーン", "ストロー"],
-                correct: 0
-            },
-            {
-                q: "Q3: カクテルを冷たくするために、最初にグラスに入れるものは？",
-                options: ["お湯", "塩", "氷"],
-                correct: 2
-            }
-        ];
+const perguntasQuiz = [
+    {
+        q: "Q1: カクテルのベース（Base）とは何のこと？",
+        options: ["氷のこと", "主役（メイン）になるお酒", "使うコップ（グラス）"],
+        correct: 1
+    },
+    {
+        q: "Q2: お酒とジュースを混ぜるために使う、カクテルの道具はどれ？",
+        options: ["シェーカー", "大きいスプーン", "ストロー"],
+        correct: 0
+    },
+    {
+        q: "Q3: カクテルを冷たくするために、最初にグラスに入れるものは？",
+        options: ["お湯", "塩", "氷"],
+        correct: 2
+    }
+];
 
-        // 1. Criamos a função verificarResposta primeiro
-        window.verificarResposta = function(escolha) {
-            if (escolha === perguntasQuiz[perguntaAtual].correct) {
-                acertos++;
-            }
-            perguntaAtual++;
-            mostrarProximaPergunta();
+window.verificarResposta = function(escolha, event) {
+    const dados = perguntasQuiz[perguntaAtual];
+    if (!dados) return;
+
+    const indiceCorreto = dados.correct;
+    
+    // Pega os botões dentro do div de respostas do quiz
+    const divOpcoes = document.getElementById("opcoesResposta");
+    const botoesOpcao = divOpcoes.querySelectorAll("button");
+
+    // 1. Bloqueia novos cliques e revela a resposta CORRETA em verde
+    botoesOpcao.forEach((btn, index) => {
+        btn.style.pointerEvents = "none"; // Desativa cliques no quiz
+        
+        if (index === indiceCorreto) {
+            btn.style.setProperty("background-color", "#059669", "important");
+            btn.style.setProperty("color", "#ffffff", "important");
+            btn.style.setProperty("border-color", "#10b981", "important");
         }
+    });
 
-        // 2. Depois criamos a função que renderiza as perguntas na tela
-        window.mostrarProximaPergunta = function() {
-            const container = document.getElementById("containerQuestao");
-            const textoPerg = document.getElementById("textoPergunta");
-            const divOpcoes = document.getElementById("opcoesResposta");
-
-            if (perguntaAtual < perguntasQuiz.length) {
-                const dados = perguntasQuiz[perguntaAtual];
-                textoPerg.innerText = dados.q;
-                divOpcoes.innerHTML = "";
-
-                dados.options.forEach((opt, idx) => {
-                    const btnOpt = document.createElement("button");
-                    btnOpt.innerText = opt;
-                    btnOpt.className = "btn-secundario";
-                    btnOpt.style.width = "100%";
-                    btnOpt.style.margin = "2px 0";
-                    btnOpt.style.fontSize = "0.9rem";
-                    btnOpt.style.padding = "6px";
-                    
-                    // Associamos a função que agora já está declarada e visível globalmente
-                    btnOpt.onclick = () => verificarResposta(idx);
-                    
-                    divOpcoes.appendChild(btnOpt);
-                });
-            } else {
-                // Fim do Quiz
-                container.style.display = "none";
-                const resultado = document.getElementById("resultadoQuiz");
-                
-                // Calcula bônus: 1 acerto = 11%, 2 = 22%, 3 = 33%
-                let bonus = 0;
-                if (acertos === 1) bonus = 11;
-                if (acertos === 2) bonus = 22;
-                if (acertos === 3) bonus = 33;
-
-                // SALVA O BÔNUS NO LOCALSTORAGE PARA O LAB CONSEGUIR LER
-                localStorage.setItem("bonus_quiz_aula1", bonus.toString());
-
-                resultado.innerHTML = `
-                    <p style="color: #34d399; margin: 5px 0;">✨ クイズ終了！正解数: ${acertos}/${perguntasQuiz.length}</p>
-                    <p style="color: #7c3aed; font-size: 1.1rem; text-shadow: 0 0 5px rgba(124,58,237,0.3)">
-                        🔥 チームの魔力同調率がアップした！
-                    </p>
-                `;
-
-                // Libera o botão de avançar de vez
-                const btnProximo = document.getElementById("btnAvancarPag3");
-                btnProximo.style.opacity = "1";
-                btnProximo.style.pointerEvents = "all";
-            }
+    // 2. Se a escolha foi ERRADA, pinta o botão clicado em vermelho
+    if (escolha === indiceCorreto) {
+        acertos++;
+    } else {
+        const botaoClicado = botoesOpcao[escolha];
+        if (botaoClicado) {
+            botaoClicado.style.setProperty("background-color", "#dc2626", "important");
+            botaoClicado.style.setProperty("color", "#ffffff", "important");
+            botaoClicado.style.setProperty("border-color", "#ef4444", "important");
         }
+    }
+
+    // 3. Espera 1.2s para mostrar o efeito visual e avança
+    setTimeout(() => {
+        perguntaAtual++;
+        mostrarProximaPergunta();
+    }, 1200);
+};
+
+window.mostrarProximaPergunta = function() {
+    const container = document.getElementById("containerQuestao");
+    const textoPerg = document.getElementById("textoPergunta");
+    const divOpcoes = document.getElementById("opcoesResposta");
+
+    if (perguntaAtual < perguntasQuiz.length) {
+        const dados = perguntasQuiz[perguntaAtual];
+        textoPerg.innerText = dados.q;
+        divOpcoes.innerHTML = "";
+
+        dados.options.forEach((opt, idx) => {
+            const btnOpt = document.createElement("button");
+            btnOpt.innerText = opt;
+            btnOpt.className = "btn-secundario";
+            btnOpt.style.width = "100%";
+            btnOpt.style.margin = "2px 0";
+            btnOpt.style.fontSize = "0.9rem";
+            btnOpt.style.padding = "6px";
+            btnOpt.style.transition = "background-color 0.3s ease, border-color 0.3s ease";
+            
+            // Passa o índice e o evento de clique
+            btnOpt.onclick = (event) => verificarResposta(idx, event);
+            
+            divOpcoes.appendChild(btnOpt);
+        });
+    } else {
+        // Fim do Quiz
+        container.style.display = "none";
+        const resultado = document.getElementById("resultadoQuiz");
+        
+        // Calcula bônus: 1 acerto = 11%, 2 = 22%, 3 = 33%
+        let bonus = 0;
+        if (acertos === 1) bonus = 11;
+        if (acertos === 2) bonus = 22;
+        if (acertos === 3) bonus = 33;
+
+        // SALVA O BÔNUS NO LOCALSTORAGE PARA O LAB CONSEGUIR LER
+        localStorage.setItem("bonus_quiz_aula1", bonus.toString());
+
+        resultado.innerHTML = `
+            <p style="color: #34d399; margin: 5px 0;">✨ クイズ終了！正解数: ${acertos}/${perguntasQuiz.length}</p>
+            <p style="color: #7c3aed; font-size: 1.1rem; text-shadow: 0 0 5px rgba(124,58,237,0.3)">
+                🔥 チームの魔力同調率がアップした！
+            </p>
+        `;
+
+        // Libera o botão de avançar de vez
+        const btnProximo = document.getElementById("btnAvancarPag3");
+        if (btnProximo) {
+            btnProximo.style.opacity = "1";
+            btnProximo.style.pointerEvents = "all";
+        }
+    }
+};
         // --- SORTEIO MÍSTICO ---
         function executarSorteioMistico() {
             const visor = document.getElementById("visorSorteio");
